@@ -1,4 +1,7 @@
 # kali-sandbox
+
+[![ubuntu nagios core CI workflow](https://github.com/githubfoam/kali-sandbox/actions/workflows/ubuntu-workflow.yml/badge.svg?branch=main)](https://github.com/githubfoam/kali-sandbox/actions/workflows/ubuntu-workflow.yml)
+
 ~~~~
 >vagrant up vg-kali-02
 
