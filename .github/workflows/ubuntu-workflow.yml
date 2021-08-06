@@ -18,10 +18,21 @@ jobs:
       run: |
         docker pull  kalilinux/kali-rolling 
         docker image ls
-        docker run -it -d --name kaliroll01 kalilinux/kali-rolling  /bin/bash
+        docker run --name kaliroll01 --rm -i -t kalilinux/kali-rolling bash
         sleep 5
         docker container ls
-        docker exec -it kaliroll01 "tracerout linuxhint.com"
+        docker exec -d kaliroll01 touch /tmp/execWorks #create a new file /tmp/execWorks inside the running container ubuntu_bash
+        docker exec -d kaliroll01 touch sh -c "pwd && ls -lai /tmp"     
+    # - name: "docker kalilinux/kali-rolling"
+    #   run: |
+    #     docker pull  kalilinux/kali-rolling 
+    #     docker image ls
+    #     docker run -it -d --name kaliroll01 kalilinux/kali-rolling  /bin/bash
+    #     sleep 5
+    #     docker container ls
+    #     docker run -it -d --name kaliroll02 kalilinux/kali-rolling  /bin/bash
+    #     docker container ls
+    #     docker exec -it kaliroll01 "tracerout linuxhint.com"
     # - name: "Install osquery "
     #   run: |
     #     set -o errexit

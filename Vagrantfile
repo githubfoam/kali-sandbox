@@ -5,13 +5,26 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
+
+$kalisandbox_script = <<-SCRIPT
+echo I am provisioning...
+date > /etc/vagrant_provisioned_at
+
+echo "192.168.50.5 vg-kali-04.local vg-kali-04" |sudo tee -a /etc/hosts
+echo "192.168.50.6 vg-kali-05.local vg-kali-05" |sudo tee -a /etc/hosts
+cat /etc/hosts
+echo "nameserver 8.8.8.8" |sudo tee -a /etc/resolv.conf
+cat /etc/resolv.conf
+
+SCRIPT
+
 Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     # vb.gui = false
     vb.memory = "1024"
     vb.cpus = 2
-    vb.customize ["modifyvm", :id, "--groups", "/kali-sandbox"] # create vbox group
+    # vb.customize ["modifyvm", :id, "--groups", "/kali-sandbox"] # create vbox group
   end
 
 
@@ -47,7 +60,8 @@ Vagrant.configure("2") do |config|
       kalicluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
     end 
 
-  
+  #### private network
+
     config.vm.define "vg-kali-04" do |kalicluster|
       kalicluster.vm.box = "kalilinux/rolling"
       kalicluster.vm.hostname = "vg-kali-04"
@@ -60,7 +74,10 @@ Vagrant.configure("2") do |config|
           vb.memory = "1024"
           vb.gui = true
       end
+      kalicluster.vm.provision "shell",    inline: "hostnamectl set-hostname vg-kali-04"
+      kalicluster.vm.provision "shell", inline: $kalisandbox_script
       kalicluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+      
     end 
   
     config.vm.define "vg-kali-05" do |kalicluster|
@@ -75,7 +92,10 @@ Vagrant.configure("2") do |config|
           vb.memory = "1024"
           vb.gui = true
       end
+      kalicluster.vm.provision "shell",    inline: "hostnamectl set-hostname vg-kali-05"
+      kalicluster.vm.provision "shell", inline: $kalisandbox_script
       kalicluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+
     end 
 
 end
