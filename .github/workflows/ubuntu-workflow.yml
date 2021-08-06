@@ -3,7 +3,7 @@ name: "ubuntu kali linux docker CI workflow"
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ test ]
 
 jobs:
 
