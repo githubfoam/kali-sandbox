@@ -14,15 +14,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
       run: hostnamectl status  
-      # https://docs.docker.com/engine/reference/commandline/exec/#examples
-    - name: "docker ubuntu"
-      run: |
-        docker run --name ubuntu_bash --rm -i -t ubuntu bash #start a container
-        docker image ls
-        docker container ls
-        docker ps -a
-        docker exec -d ubuntu_bash touch /tmp/execWorks #execute a command on the container
-        docker exec -d ubuntu_bash sh -c "pwd && ls -lai /tmp" 
     - name: "docker kalilinux/kali-rolling"
       run: |
         docker pull  kalilinux/kali-rolling 
@@ -30,78 +21,36 @@ jobs:
         docker run --name kaliroll01 --rm -i -t kalilinux/kali-rolling bash
         sleep 5
         docker container ls
-        docker exec -d kaliroll01 touch /tmp/execWorks #create a new file /tmp/execWorks inside the running container ubuntu_bash
-        docker exec -d kaliroll01 touch sh -c "pwd && ls -lai /tmp"     
-    # - name: "docker kalilinux/kali-rolling"
-    #   run: |
-    #     docker pull  kalilinux/kali-rolling 
-    #     docker image ls
-    #     docker run -it -d --name kaliroll01 kalilinux/kali-rolling  /bin/bash
-    #     sleep 5
-    #     docker container ls
-    #     docker run -it -d --name kaliroll02 kalilinux/kali-rolling  /bin/bash
-    #     docker container ls
-    #     docker exec -it kaliroll01 "tracerout linuxhint.com"
-    # - name: "Install osquery "
-    #   run: |
-    #     set -o errexit
-    #     set -o pipefail
-    #     set -o nounset
-    #     set -o xtrace
-    #     echo "=============Installing Osquery debian arm64=============="
-    #     export OSQUERY_KEY=1484120AC4E9F8A1A577AEEE97A80C63C9D8B80B
-    #     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $OSQUERY_KEY
-    #     sudo add-apt-repository 'deb [arch=amd64] https://pkg.osquery.io/deb deb main'
-    #     sudo apt-get update -qq && sudo apt-get install osquery -qqy
-    #     sudo osqueryctl start osqueryd
-    #     sudo osqueryctl status osqueryd
+        docker ps -a
 
-  # ubuntu-1804-job:
-  #   name: "osquery onubuntu-18.04"
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: "os fingerprinting"
-  #     run: hostnamectl status 
-  #   - name: "docker kalilinux/kali-rolling"
-  #     run: |
-  #       docker pull  kalilinux/kali-rolling 
-  #       docker image ls       
-  #   - name: "Install osquery "
-  #     run: |
-  #       set -o errexit
-  #       set -o pipefail
-  #       set -o nounset
-  #       set -o xtrace
-  #       echo "=============Installing Osquery debian arm64=============="
-  #       export OSQUERY_KEY=1484120AC4E9F8A1A577AEEE97A80C63C9D8B80B
-  #       sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $OSQUERY_KEY
-  #       sudo add-apt-repository 'deb [arch=amd64] https://pkg.osquery.io/deb deb main'
-  #       sudo apt-get update -qq && sudo apt-get install osquery -qqy
-  #       sudo osqueryctl start osqueryd
-  #       sudo osqueryctl status osqueryd
+  ubuntu-1804-job:
+    name: "osquery onubuntu-18.04"
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status 
+    - name: "docker kalilinux/kali-rolling"
+      run: |
+        docker pull  kalilinux/kali-rolling 
+        docker image ls
+        docker run --name kaliroll01 --rm -i -t kalilinux/kali-rolling bash
+        sleep 5
+        docker container ls
+        docker ps -a
 
-  # ubuntu-2004-job:
-  #   name: "osquery on ubuntu-20.04"
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: "os fingerprinting"
-  #     run: hostnamectl status 
-  #   - name: "docker kalilinux/kali-rolling"
-  #     run: |
-  #       docker pull  kalilinux/kali-rolling 
-  #       docker image ls      
-  #   - name: "Install osquery "
-  #     run: |
-  #       set -o errexit
-  #       set -o pipefail
-  #       set -o nounset
-  #       set -o xtrace
-  #       echo "=============Installing Osquery debian arm64=============="
-  #       export OSQUERY_KEY=1484120AC4E9F8A1A577AEEE97A80C63C9D8B80B
-  #       sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $OSQUERY_KEY
-  #       sudo add-apt-repository 'deb [arch=amd64] https://pkg.osquery.io/deb deb main'
-  #       sudo apt-get update -qq && sudo apt-get install osquery -qqy
-  #       sudo osqueryctl start osqueryd
-  #       sudo osqueryctl status osqueryd
+  ubuntu-2004-job:
+    name: "osquery on ubuntu-20.04"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status 
+    - name: "docker kalilinux/kali-rolling"
+      run: |
+        docker pull  kalilinux/kali-rolling 
+        docker image ls
+        docker run --name kaliroll01 --rm -i -t kalilinux/kali-rolling bash
+        sleep 5
+        docker container ls
+        docker ps -a

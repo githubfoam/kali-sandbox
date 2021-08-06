@@ -43,6 +43,7 @@ PING vg-kali-04.local (192.168.50.5) 56(84) bytes of data.
 
 >vagrant destroy -f vg-kali-04 vg-kali-05
 ~~~~
+ 
 ~~~~
 GUI interface
 username/password vagrant/vagrant
