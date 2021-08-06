@@ -62,5 +62,20 @@ Vagrant.configure("2") do |config|
       end
       kalicluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
     end 
+  
+    config.vm.define "vg-kali-05" do |kalicluster|
+      kalicluster.vm.box = "kalilinux/rolling"
+      kalicluster.vm.hostname = "vg-kali-05"
+      kalicluster.vm.network "private_network", ip: "192.168.50.6"
+      kalicluster.vm.network "forwarded_port", guest: 80, host: 81
+      #Disabling the default /vagrant share can be done as follows:
+      # kalicluster.vm.synced_folder ".", "/vagrant", disabled: true
+      kalicluster.vm.provider "virtualbox" do |vb|
+          vb.name = "vbox-kali-05"
+          vb.memory = "1024"
+          vb.gui = true
+      end
+      kalicluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+    end 
 
 end

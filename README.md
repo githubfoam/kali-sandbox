@@ -28,6 +28,17 @@ permitted by applicable law.
 
 ~~~~
 ~~~~
+>vagrant up vg-kali-04 vg-kali-05
+
+>vagrant ssh vg-kali-05
+$ ping -c 2 192.168.50.5                                                                                                                                                                                     2 ⨯
+PING 192.168.50.5 (192.168.50.5) 56(84) bytes of data.
+64 bytes from 192.168.50.5: icmp_seq=1 ttl=64 time=0.444 ms
+64 bytes from 192.168.50.5: icmp_seq=2 ttl=64 time=0.432 ms
+
+>vagrant destroy -f vg-kali-04 vg-kali-05
+~~~~
+~~~~
 GUI interface
 username/password vagrant/vagrant
 
