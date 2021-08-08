@@ -15,14 +15,15 @@ jobs:
     - name: "os fingerprinting"
       run: hostnamectl status  
       # https://docs.docker.com/engine/reference/commandline/exec/#examples
-    - name: "docker ubuntu"
-      run: |
-        docker run --name ubuntu_bash --rm -i -t ubuntu bash #start a container
-        docker image ls
-        docker container ls
-        docker ps -a
-        docker exec -d ubuntu_bash touch /tmp/execWorks #execute a command on the container
-        docker exec -d ubuntu_bash sh -c "pwd && ls -lai /tmp" 
+    # the input device is not a TTY
+    # - name: "docker ubuntu"
+    #   run: |
+    #     docker run --name ubuntu_bash --rm -i -t ubuntu bash #start a container
+    #     docker image ls
+    #     docker container ls
+    #     docker ps -a
+    #     docker exec -d ubuntu_bash touch /tmp/execWorks #execute a command on the container
+    #     docker exec -d ubuntu_bash sh -c "pwd && ls -lai /tmp" 
     - name: "docker kalilinux/kali-rolling"
       run: |
         docker pull  kalilinux/kali-rolling 
