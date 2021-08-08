@@ -20,10 +20,7 @@ jobs:
       run: |
         docker pull  kalilinux/kali-rolling 
         docker image ls
-        docker run --name kaliroll01 --rm -i -t kalilinux/kali-rolling bash
-        sleep 5
-        docker container ls
-        docker ps -a
+
 
   ubuntu-1804-job:
     name: "osquery onubuntu-18.04"
@@ -36,10 +33,7 @@ jobs:
       run: |
         docker pull  kalilinux/kali-rolling 
         docker image ls
-        docker run --name kaliroll01 --rm -i -t kalilinux/kali-rolling bash
-        sleep 5
-        docker container ls
-        docker ps -a
+
 
   ubuntu-2004-job:
     name: "osquery on ubuntu-20.04"
@@ -52,7 +46,4 @@ jobs:
       run: |
         docker pull  kalilinux/kali-rolling 
         docker image ls
-        docker run --name kaliroll01 --rm -i -t kalilinux/kali-rolling bash
-        sleep 5
-        docker container ls
-        docker ps -a
+
