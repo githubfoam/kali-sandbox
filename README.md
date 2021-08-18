@@ -3,6 +3,26 @@
 [![ubuntu nagios core CI workflow](https://github.com/githubfoam/kali-sandbox/actions/workflows/ubuntu-workflow.yml/badge.svg?branch=main)](https://github.com/githubfoam/kali-sandbox/actions/workflows/ubuntu-workflow.yml)
 
 ~~~~
+>vagrant init --template Vagrantfile.provision.ansible.erb
+>vagrant up vg-kali-04
+>vagrant ssh vg-kali-04
+
+>vagrant destroy -f vg-kali-04
+>del Vagrantfile
+
+~~~~
+
+~~~~
+>vagrant init --template Vagrantfile.provision.bash.erb
+>vagrant up vg-kali-02
+>vagrant ssh vg-kali-02
+
+>vagrant destroy -f vg-kali-02
+>del Vagrantfile
+
+~~~~
+
+~~~~
 >vagrant up vg-kali-02
 
 >vagrant ssh vg-kali-02

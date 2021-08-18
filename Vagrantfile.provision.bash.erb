@@ -27,13 +27,15 @@ Vagrant.configure("2") do |config|
     # vb.customize ["modifyvm", :id, "--groups", "/kali-sandbox"] # create vbox group
   end
 
+  # username/password vagrant/vagrant
 
   #bridged network, DHCP enabled auto IP assignment
   config.vm.define "vg-kali-02" do |kalicluster|
     kalicluster.vm.box = "kalilinux/rolling"
     kalicluster.vm.hostname = "vg-kali-02"
     kalicluster.vm.network "public_network"
-    # kalicluster.vm.network "forwarded_port", guest: 80, host: 80
+    # openVAS cfg
+    kalicluster.vm.network "forwarded_port", guest: 9392, host: 9392
     #Disabling the default /vagrant share can be done as follows:
     # kalicluster.vm.synced_folder ".", "/vagrant", disabled: true
     kalicluster.vm.provider "virtualbox" do |vb|

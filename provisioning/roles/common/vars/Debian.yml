@@ -1,0 +1,8 @@
+---
+system_packages:
+  - socat
+  - traceroute
+  - mtr
+  - tcpdump
+  - net-tools
+  
