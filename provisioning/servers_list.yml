@@ -6,7 +6,7 @@
   vbox_cpu: 2
   #bridged network, DHCP enabled auto IP assignment
   network_type: "public_network"
-  # vagrant_box_ip: ""
+  # vagrant_box_ip: "192.168.11.206"
   guest_port: 9392
   host_port: 9392
   server_bootstrap: "provisioning/deploy.yml"
@@ -32,6 +32,21 @@
 - vagrant_box_host: "vg-kali-04"
   vagrant_box: "kalilinux/rolling"
   vbox_name: "vbox-kali-04"
+  vbox_ram: 1024
+  vbox_cpu: 2
+  #bridged network, DHCP enabled auto IP assignment
+  network_type: "public_network"
+  # vagrant_box_ip: "192.168.11.206"
+  guest_port: 9392
+  host_port: 9392
+  server_bootstrap: "provisioning/deploy.yml"
+  shell_provision: "provisioning/bootstrap.sh"  
+  # ansible_version: "2.9.1"
+  ansible_compatibility_mode: "2.0"
+
+- vagrant_box_host: "vg-kali-05"
+  vagrant_box: "kalilinux/rolling"
+  vbox_name: "vbox-kali-05"
   vbox_ram: 1024
   vbox_cpu: 2
   network_type: "private_network"
