@@ -1,4 +1,4 @@
-name: "ubuntu kali linux docker CI workflow"
+name: "kali linux docker CI workflow"
 
 
 on:
@@ -9,8 +9,9 @@ on:
 
 jobs:
 
+  #deprecated
   ubuntu-1604-job:
-    name: "osquery on ubuntu-16.04"
+    name: "kali on ubuntu-16.04"
     runs-on: ubuntu-16.04
     steps:
     - uses: actions/checkout@v2
@@ -23,7 +24,7 @@ jobs:
 
 
   ubuntu-1804-job:
-    name: "osquery onubuntu-18.04"
+    name: "kali onubuntu-18.04"
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -36,7 +37,7 @@ jobs:
 
 
   ubuntu-2004-job:
-    name: "osquery on ubuntu-20.04"
+    name: "kali on ubuntu-20.04"
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
@@ -47,3 +48,14 @@ jobs:
         docker pull  kalilinux/kali-rolling 
         docker image ls
 
+  ubuntu-latest-job:
+    name: "kali on ubuntu-latest"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status 
+    - name: "docker kalilinux/kali-rolling"
+      run: |
+        docker pull  kalilinux/kali-rolling 
+        docker image ls
